@@ -32,8 +32,8 @@ def get_names_coordinates(alignment_bio):
             start = 1
             end = length
         names.append(name)
-        starts.append(start)
-        ends.append(end)
+        starts.append(int(start))
+        ends.append(int(end))
     return names, starts, ends
 
 
