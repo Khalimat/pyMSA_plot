@@ -115,14 +115,14 @@ def plot_MSA(alignment, alignment_numeric,
     sns.heatmap(alignment_numeric, annot=alignment,
                 fmt='', ax=ax1, cmap='YlGnBu', yticklabels=seq_names, cbar=False)
     ax2.set_xlabel('Position of sequence')
-    x_ticks = [aa + '\n' + str(ind+1) for ind, aa in enumerate(aa_names[0])]
-    x_tick_pos = [i + 0.5 for i in range(len(x_ticks))]
+    x_ticks = [aa + ' ' + str(ind+1) for ind, aa in enumerate(aa_names[0])]
+    x_tick_pos = [i + 0.7 for i in range(len(x_ticks))]
 
 
     ax2.bar(x_tick_pos, aa_freq[0], align='center', label='AA')
     ax2.bar(x_tick_pos, gap_freq[0], align='center', label='Gap')
     ax2.set_xticks(x_tick_pos)
-    ax2.set_xticklabels(x_ticks, fontsize=6)
+    ax2.set_xticklabels(x_ticks, fontsize=8, rotation=45)
     ax2.legend(loc='upper center')
     plt.subplots_adjust(hspace=0.01)
 
