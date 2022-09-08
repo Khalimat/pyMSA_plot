@@ -123,7 +123,7 @@ def plot_MSA(alignment, alignment_numeric,
     ax2.bar(x_tick_pos, aa_freq[0], align='center', label='AA')
     ax2.bar(x_tick_pos, gap_freq[0], align='center', label='Gap')
     ax2.set_xticks(x_tick_pos)
-    ax2.set_xticklabels(x_ticks)
+    ax2.set_xticklabels(x_ticks, fontsize=12)
     ax2.legend(loc='upper center')
     plt.subplots_adjust(hspace=0.01)
 
