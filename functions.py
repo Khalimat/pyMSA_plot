@@ -1,7 +1,7 @@
 import seaborn as sns
 import numpy as np
 from scipy.stats import mode
-
+import argparse
 from Bio import AlignIO
 from matplotlib import pyplot as plt
 from pathlib import Path
@@ -113,7 +113,7 @@ def plot_MSA(alignment, alignment_numeric,
     aa_names, aa_freq, gap_freq = get_frequencies(alignment)
 
     sns.heatmap(alignment_numeric, annot=alignment,
-                fmt='', ax=ax1, cmap="YlGnBu", yticklabels=seq_names, cbar=False)
+                fmt='', ax=ax1, cmap='YlGnBu', yticklabels=seq_names, cbar=False)
     ax2.set_xlabel('Position of sequence')
     x_ticks = [aa + '\n' + str(ind+1) for ind, aa in enumerate(aa_names[0])]
     x_tick_pos = [i + 0.5 for i in range(len(x_ticks))]
@@ -128,5 +128,36 @@ def plot_MSA(alignment, alignment_numeric,
 
     plt.show()
     fig.savefig(Path(path_to_save) / f'{fig_name}.png', dpi=300)
+
+def make_MSA_plot(msa_file_name, directory):
+
+    """
+    Plots a chooses MSA file and saves fig
+
+    :param msa_file_name: str, MSA file name
+    :param directory: str, dir with MSA file (the fig will be saved there too)
+
+    """
+
+    msa_full_path = Path(directory) / f'{msa_file_name}.sto'
+    alignment_bio = AlignIO.read(msa_full_path, 'stockholm')
+    alignment_aa = np.array(alignment_bio)
+    alignment_int = aminoacid_to_numbers(alignment_aa)
+    n_seq = alignment_aa.shape[0]
+    alignment_length = alignment_aa.shape[1]
+    alignment_names = [record.id for record in alignment_bio]
+    plot_MSA(alignment_aa, alignment_int,
+             alignment_names, alignment_length, n_seq,
+             msa_file_name, directory)
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-d', '--directory', required=True,
+                    help='MSA file name, it should be in Stockholm format')
+    ap.add_argument('-m_f', '--msa_file', required=True,
+                    help='Directory to save the fig (must contain the MSA file)')
+
+    args = ap.parse_args()
+    plot_MSA(args.msa_file, args.directory)
 
 
