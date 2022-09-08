@@ -111,6 +111,7 @@ def plot_MSA(alignment, alignment_numeric,
     fig, [ax1, ax2] = plt.subplots(2, 1, figsize=(width, height), sharex='col',
                            gridspec_kw={'height_ratios': [0.8, 0.2]})
     aa_names, aa_freq, gap_freq = get_frequencies(alignment)
+    print(aa_names)
 
     sns.heatmap(alignment_numeric, annot=alignment,
                 fmt='', ax=ax1, cmap='YlGnBu', yticklabels=seq_names, cbar=False)
