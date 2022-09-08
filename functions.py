@@ -158,6 +158,6 @@ if __name__ == "__main__":
                     help='Directory to save the fig (must contain the MSA file)')
 
     args = ap.parse_args()
-    plot_MSA(args.msa_file, args.directory)
+    make_MSA_plot(args.msa_file, args.directory)
 
 
