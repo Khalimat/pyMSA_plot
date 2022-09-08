@@ -111,7 +111,6 @@ def plot_MSA(alignment, alignment_numeric,
     fig, [ax1, ax2] = plt.subplots(2, 1, figsize=(width, height), sharex='col',
                            gridspec_kw={'height_ratios': [0.8, 0.2]})
     aa_names, aa_freq, gap_freq = get_frequencies(alignment)
-    print(aa_names)
 
     sns.heatmap(alignment_numeric, annot=alignment,
                 fmt='', ax=ax1, cmap='YlGnBu', yticklabels=seq_names, cbar=False)
@@ -123,7 +122,7 @@ def plot_MSA(alignment, alignment_numeric,
     ax2.bar(x_tick_pos, aa_freq[0], align='center', label='AA')
     ax2.bar(x_tick_pos, gap_freq[0], align='center', label='Gap')
     ax2.set_xticks(x_tick_pos)
-    ax2.set_xticklabels(x_ticks, fontsize=12)
+    ax2.set_xticklabels(x_ticks, fontsize=8)
     ax2.legend(loc='upper center')
     plt.subplots_adjust(hspace=0.01)
 
