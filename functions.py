@@ -63,6 +63,14 @@ def get_frequencies(alignment):
 
 
 def aminoacid_to_numbers(alignment):
+    """
+    Converts AAs and '-' (gap) into numbers
+
+    :param  alignment: 2D np.array, with AAs
+
+    :return: alignment_numeric: 2D np.array, with int
+             corresponding to each AA
+    """
 
     AA = ['-', 'A', 'C', 'D', 'E',
           'F', 'G', 'H', 'I', 'K',
@@ -80,14 +88,16 @@ def plot_MSA(alignment, alignment_numeric,
              seq_names, msa_length, n_seqs,
              fig_name, path_to_save):
     """
+    Function to plot MSA and save the figure
 
-    :param alignment:
-    :param alignment_numeric:
-    :param seq_names:
-    :param msa_length:
-    :param n_seqs:
-    :param fig_name:
-    :param path_to_save:
+    :param alignment: 2D np.array, with AAs
+    :param alignment_numeric: 2D np.array, with int
+                              corresponding to each AA
+    :param seq_names: list, seq names
+    :param msa_length: int, length of sequences
+    :param n_seqs: int, n of seqs in the alignment
+    :param fig_name: str, figure name
+    :param path_to_save: str, path to save the figure
     """
 
     if n_seqs < 10:
@@ -118,4 +128,5 @@ def plot_MSA(alignment, alignment_numeric,
 
     plt.show()
     fig.savefig(Path(path_to_save) / f'{fig_name}.png', dpi=300)
+
 
