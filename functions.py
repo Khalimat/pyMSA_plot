@@ -114,7 +114,7 @@ def plot_MSA(alignment, alignment_numeric,
 
     sns.heatmap(alignment_numeric, annot=alignment,
                 fmt='', ax=ax1, cmap='YlGnBu', yticklabels=seq_names, cbar=False)
-    ax2.set_xlabel('Position of sequence')
+    ax2.set_xlabel('Position on the alignment')
     x_ticks = [aa + str(ind+1) for ind, aa in enumerate(aa_names[0])]
     x_tick_pos = [i + 0.7 for i in range(len(x_ticks))]
 
